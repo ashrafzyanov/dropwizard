@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>ru.trytouse</groupId>
+    <artifactId>dropwizard</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>modules/dropwizard-web</module>
+        <module>modules/dropwizard-api</module>
+        <module>modules/dropwizard-core</module>
+        <module>modules/dropwizard-web-init</module>
+    </modules>
+
+    <properties>
+        <parent.path>${project.basedir}/../pom.xml</parent.path>
+        <dropwizard.version>2.0.19</dropwizard.version>
+        <entryPoint>ru.trytouse.dropwizard.web.Application</entryPoint>
+        <exec.mainClass>${entryPoint}</exec.mainClass>
+        <exec.arguments>server</exec.arguments>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- INTERNAL -->
+            <dependency>
+                <groupId>ru.trytouse</groupId>
+                <artifactId>dropwizard-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>ru.trytouse</groupId>
+                <artifactId>dropwizard-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>ru.trytouse</groupId>
+                <artifactId>dropwizard-web</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>ru.trytouse</groupId>
+                <artifactId>dropwizard-web-init</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!-- END INTERNAL -->
+            <dependency>
+                <groupId>io.dropwizard</groupId>
+                <artifactId>dropwizard-core</artifactId>
+                <version>${dropwizard.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.dropwizard</groupId>
+                <artifactId>dropwizard-jdbi3</artifactId>
+                <version>${dropwizard.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>exec-maven-plugin</artifactId>
+                    <configuration>
+                        <skip>true</skip>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+</project>
